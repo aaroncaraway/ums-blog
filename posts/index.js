@@ -1,3 +1,4 @@
+// -- POSTS
 const express = require("express");
 const bodyParser = require("body-parser");
 const { randomBytes } = require("crypto");
@@ -36,7 +37,7 @@ app.post("/posts", async (req, res) => {
 });
 
 app.post("/events", (req, res) => {
-  console.log("GETTING HERE!!", req.body);
+  console.log("GETTING HERE POSTS!!", req.body);
 });
 
 app.listen(4000, () => {
