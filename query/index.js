@@ -16,14 +16,27 @@ app.get("/posts", (req, res) => {
 app.post("/events", (req, res) => {
   const { type, data } = req.body;
   if (type === "PostCreated") {
+    console.log("QUERY -- Event Received: Post Created");
     const { id, title } = data;
     posts[id] = { id, title, comments: [] };
   }
 
   if (type === "CommentCreated") {
-    const { id, content, postId } = data;
+    console.log("QUERY -- Event Received: Comment Created");
+    const { id, content, postId, status } = data;
     const post = posts[postId];
-    post.comments.push({ id, content });
+    post.comments.push({ id, content, status });
+  }
+
+  if (type === "CommentUpdated") {
+    console.log("QUERY -- Event Received: Comment Updated");
+    const { id, content, postId, status } = data;
+    const post = posts[postId];
+    const comment = post.comments.find((comment) => {
+      return comment.id === id;
+    });
+    comment.status = status;
+    comment.content = content;
   }
 
   console.log(posts);

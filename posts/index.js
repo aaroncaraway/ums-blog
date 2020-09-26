@@ -36,9 +36,9 @@ app.post("/posts", async (req, res) => {
   res.status(201).send(posts[id]);
 });
 
-app.post("/events", (req, res) => {
-  console.log("GETTING HERE POSTS!!", req.body);
-});
+// app.post("/events", (req, res) => {
+//   console.log("GETTING HERE POSTS!!", req.body);
+// });
 
 app.listen(4000, () => {
   console.log("currently listening on port 4000");
